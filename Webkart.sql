@@ -14,13 +14,37 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Volcando datos para la tabla database.Pedidos: ~2 rows (aproximadamente)
+
+-- Volcando estructura de base de datos para database
+CREATE DATABASE IF NOT EXISTS `database` /*!40100 DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci */;
+USE `database`;
+
+-- Volcando estructura para tabla database.Pedidos
+CREATE TABLE IF NOT EXISTS `Pedidos` (
+  `ID_Pedido` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date NOT NULL,
+  `ID_Usuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_Pedido`),
+  KEY `id_usuario` (`ID_Usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- Volcando datos para la tabla database.Pedidos: ~4 rows (aproximadamente)
 REPLACE INTO `Pedidos` (`ID_Pedido`, `fecha`, `ID_Usuario`) VALUES
 	(1, '2023-05-15', 1),
 	(15, '2023-06-06', 2),
-	(16, '2023-06-06', 2);
+	(16, '2023-06-06', 2),
+	(17, '2023-06-09', 2);
 
--- Volcando datos para la tabla database.Productos: ~10 rows (aproximadamente)
+-- Volcando estructura para tabla database.Productos
+CREATE TABLE IF NOT EXISTS `Productos` (
+  `ID_Producto` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre_Prod` varchar(50) NOT NULL DEFAULT '0',
+  `Descripcion` varchar(250) NOT NULL DEFAULT '0',
+  `Precio` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_Producto`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- Volcando datos para la tabla database.Productos: ~9 rows (aproximadamente)
 REPLACE INTO `Productos` (`ID_Producto`, `Nombre_Prod`, `Descripcion`, `Precio`) VALUES
 	(1, 'CaparazonVerde', 'Linea recta al pulsar L1', 100),
 	(2, 'CaparazonRojo', 'Sigue a el enemigo de enfrente', 200),
@@ -32,13 +56,32 @@ REPLACE INTO `Productos` (`ID_Producto`, `Nombre_Prod`, `Descripcion`, `Precio`)
 	(8, 'TripleCaparazonRojo', 'Tres caparazones rojos rodean al usuario que usa el objeto. Cuando el usuario vaya pulsando L1, los caparazones se lanzarán de uno en uno.', 600),
 	(14, 'TriplePlatano', 'Tres plátanos rodean al usuario que usa el objeto. Cuando el usuario vaya pulsando L1, los caparazones se lanzarán de uno en uno.', 150);
 
--- Volcando datos para la tabla database.Prod_Pedidos: ~3 rows (aproximadamente)
+-- Volcando estructura para tabla database.Prod_Pedidos
+CREATE TABLE IF NOT EXISTS `Prod_Pedidos` (
+  `Cantidad` int(11) DEFAULT NULL,
+  `ID_Pedido` int(11) DEFAULT NULL,
+  `ID_Producto` int(11) DEFAULT NULL,
+  KEY `ID_Pedido` (`ID_Pedido`,`ID_Producto`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- Volcando datos para la tabla database.Prod_Pedidos: ~4 rows (aproximadamente)
 REPLACE INTO `Prod_Pedidos` (`Cantidad`, `ID_Pedido`, `ID_Producto`) VALUES
 	(1, 15, 2),
 	(1, 16, 2),
-	(1, 16, 8);
+	(1, 16, 8),
+	(1, 17, 1);
 
--- Volcando datos para la tabla database.Usuarios: ~1 rows (aproximadamente)
+-- Volcando estructura para tabla database.Usuarios
+CREATE TABLE IF NOT EXISTS `Usuarios` (
+  `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) DEFAULT NULL,
+  `Apellido` varchar(50) DEFAULT NULL,
+  `Correo` varchar(50) DEFAULT NULL,
+  `Contraseña` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ID_Usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci COMMENT='Tabla de los users\r\n';
+
+-- Volcando datos para la tabla database.Usuarios: ~4 rows (aproximadamente)
 REPLACE INTO `Usuarios` (`ID_Usuario`, `Nombre`, `Apellido`, `Correo`, `Contraseña`) VALUES
 	(1, 'Admin', 'Admin', 'admin@admin.com', 'admin'),
 	(2, 'Prueba', 'Prueba1', 'Prueba@gmail.com', '12345'),
