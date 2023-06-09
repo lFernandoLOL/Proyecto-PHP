@@ -1,4 +1,4 @@
--- --------------------------------------------------------
+-- ---------------------------------------------------------
 -- Host:                         127.0.0.1
 -- Versión del servidor:         10.10.2-MariaDB-1:10.10.2+maria~ubu2204 - mariadb.org binary distribution
 -- SO del servidor:              debian-linux-gnu
