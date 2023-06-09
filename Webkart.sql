@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `Pedidos` (
   KEY `id_usuario` (`ID_Usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla database.Pedidos: ~4 rows (aproximadamente)
-REPLACE INTO `Pedidos` (`ID_Pedido`, `fecha`, `ID_Usuario`) VALUES
+-- Volcando datos para la tabla database.Pedidos: ~3 rows (aproximadamente)
+INSERT INTO `Pedidos` (`ID_Pedido`, `fecha`, `ID_Usuario`) VALUES
 	(1, '2023-05-15', 1),
 	(15, '2023-06-06', 2),
 	(16, '2023-06-06', 2),
@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS `Productos` (
   PRIMARY KEY (`ID_Producto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla database.Productos: ~9 rows (aproximadamente)
-REPLACE INTO `Productos` (`ID_Producto`, `Nombre_Prod`, `Descripcion`, `Precio`) VALUES
+-- Volcando datos para la tabla database.Productos: ~10 rows (aproximadamente)
+INSERT INTO `Productos` (`ID_Producto`, `Nombre_Prod`, `Descripcion`, `Precio`) VALUES
 	(1, 'CaparazonVerde', 'Linea recta al pulsar L1', 100),
 	(2, 'CaparazonRojo', 'Sigue a el enemigo de enfrente', 200),
 	(3, 'CaparazonAzul', 'Se dirije directo al primer puesto y estalla', 500),
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `Prod_Pedidos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- Volcando datos para la tabla database.Prod_Pedidos: ~4 rows (aproximadamente)
-REPLACE INTO `Prod_Pedidos` (`Cantidad`, `ID_Pedido`, `ID_Producto`) VALUES
+INSERT INTO `Prod_Pedidos` (`Cantidad`, `ID_Pedido`, `ID_Producto`) VALUES
 	(1, 15, 2),
 	(1, 16, 2),
 	(1, 16, 8),
@@ -81,8 +81,8 @@ CREATE TABLE IF NOT EXISTS `Usuarios` (
   PRIMARY KEY (`ID_Usuario`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci COMMENT='Tabla de los users\r\n';
 
--- Volcando datos para la tabla database.Usuarios: ~4 rows (aproximadamente)
-REPLACE INTO `Usuarios` (`ID_Usuario`, `Nombre`, `Apellido`, `Correo`, `Contraseña`) VALUES
+-- Volcando datos para la tabla database.Usuarios: ~1 rows (aproximadamente)
+INSERT INTO `Usuarios` (`ID_Usuario`, `Nombre`, `Apellido`, `Correo`, `Contraseña`) VALUES
 	(1, 'Admin', 'Admin', 'admin@admin.com', 'admin'),
 	(2, 'Prueba', 'Prueba1', 'Prueba@gmail.com', '12345'),
 	(3, 'Pedro', 'Mitidiri', 'pedro@gmail.com', 'pedro1234'),
