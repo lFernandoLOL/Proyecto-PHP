@@ -1,19 +1,25 @@
-# Docker compose PHP FPM 8.2.1, Redis 7.0.7, Xdebug 3.2.0RC1, Nginx 1.23.3, and MariaDB 10.10.2
+# Web para la asignatura de IAW
 
-![docker](https://img.shields.io/badge/Docker-compose-brightgreen.svg)
-![php](https://img.shields.io/badge/PHP_FPM-8.2.1-brightgreen.svg)
-![redis](https://img.shields.io/badge/Redis-7.0.7-brightgreen.svg)
-![xdebug](https://img.shields.io/badge/Xdebug-3.2.0RC1-brightgreen.svg)
-![nginx](https://img.shields.io/badge/nginx-1.23.3-brightgreen.svg)
-![mariadb](https://img.shields.io/badge/MariaDB-10.10.2-brightgreen.svg)
+Este proyecto es una aplicación web desarrollada para la asignatura de Infraestructura de Aplicaciones Web (IAW). Proporciona funcionalidades básicas como login y registro de usuarios, una página de contacto, información acerca de la empresa, catálogo de productos, un carrito de la compra y un sistema para realizar pedidos.
 
-* Easy setup with [docker-compose](https://docs.docker.com/compose/) and [Dockerfile](https://docs.docker.com/engine/reference/builder/) under usage from [Docker](https://www.docker.com)
-* Built on the lightweight [nginx 1.23.3](https://nginx.org) webserver
-* Uses [PHP 8.2.1](https://www.php.net) for better performance, lower CPU and memory usage
-* [Redis 7.0.7](https://redis.io) as session storage, database, cache, streaming engine, and message broker
-* And [composer the dependency manager for PHP](https://getcomposer.org) to start easy your project
-* Debugging with [Xdebug 3.2.0RC1](https://xdebug.org)
-* Database storage with [MariaDB 10.10.2](https://mariadb.org)
+## Funcionalidades principales
 
-See also:
-[Blog-Post: Dockerize your PHP application with Nginx and PHP8 FPM](https://marcit.eu/en/2021/04/28/dockerize-webserver-nginx-php8/)
+- **Login y registro de usuario**: Los usuarios pueden crear una cuenta y acceder a la plataforma utilizando sus credenciales.
+- **Página de contacto**: Los usuarios pueden encontrar información de contacto para comunicarse con la empresa.
+- **Acerca de la empresa**: Se proporciona información relevante sobre la empresa, su historia, misión y visión.
+- **Catálogo de productos**: Se muestra una lista de productos disponibles para su compra.
+- **Carrito de la compra**: Los usuarios pueden agregar productos al carrito de la compra y gestionar su contenido.
+- **Sistema para pedidos**: Los usuarios pueden realizar pedidos de los productos seleccionados en el carrito.
+
+## Lenguaje
+
+- Lenguajes de programación: PHP, HTML, CSS.
+- Bootstrap para el diseño y la interfaz de usuario.
+- Base de datos: MySQL para almacenar información de usuarios, productos ,pedidos y tabla N:M de Prod_Pedidos.
+- PDO (PHP Data Objects): Para interactuar con la base de datos.
+
+
+## Autor
+
+- Fernando Agudo Cerro (https://github.com/lFernandoLOL))
+
