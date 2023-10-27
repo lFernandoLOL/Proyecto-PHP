@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Formulario de Producto</title>
     <style>
-            .form-container {
+        .form-container {
             width: 400px;
             margin: 0 auto;
             padding: 20px;
@@ -43,12 +43,21 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
+        .form-container select {
+            display: inline-block;
+            width: calc(100% - 8px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h2>Formulario de Producto</h2>
-        <!-- <form action=" ?php echo $_SERVER["PHP_SELF"]; ?>" method="POST"> -->
         <form class="form" action="index.php?controller=ProductController&action=guardarProducto" method="post">
             <label for="nombre_prod">Nombre del Producto:</label>
             <input type="text" id="nombre_prod" name="nombre_prod" required>
@@ -58,6 +67,17 @@
 
             <label for="precio">Precio:</label>
             <input type="number" id="precio" name="precio" required>
+
+            <label for="categoria" style="display: inline-block; width: 70px;">Categoría:</label>
+            <select name="categoria" id="categoria" style="display: inline-block;">
+                <option value="2">Objeto</option>
+                <option value="3">Peluche</option>
+                <option value="1">Consola</option>
+                <option value="4">Otro</option>
+            </select>
+
+            <label for="imagen">Imagen (solo PNG):</label><br>
+            <input type="file" id="imagen" name="imagen" accept=".png" required><br><br>
 
             <button type="submit">Guardar</button>
         </form>

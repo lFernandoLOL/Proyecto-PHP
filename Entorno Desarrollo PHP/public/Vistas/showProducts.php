@@ -9,6 +9,10 @@
             margin-top: 10px;
             margin-bottom: 10px;
 		}
+        img {
+    max-width: 100%; 
+    height: auto; 
+  } 
     </style>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -21,13 +25,29 @@
     <main>
         <div class="container">
         <div class="search-form">
+        <!-- 
         <form action="index.php?controller=ProductController&action=buscarProductos" method="POST" class="d-flex mt-3">
             <input type="text" name="searchInput" placeholder="Buscar producto" class="form-control me-2">
             <button type="submit" class="btn btn-primary">Buscar</button>
         </form>
+    -->
+
+        <form action="index.php?controller=ProductController&action=filtrarProductos" method="POST" class="d-flex mt-3">
+            <input type="text" name="searchInput" placeholder="Buscar producto" class="form-control me-2">
+            <select name="category">
+                <option value="">Todos</option> <!-- Opción por defecto -->
+                <option value="1">Consola</option>
+                <option value="2">Objeto</option>
+                <option value="3">Peluche</option>
+                <option value="4">Otro</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </form>
+
+
         <br>
             </div>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
                 <?php
                 foreach ($data as $article){
                 echo "<div class='col'>";

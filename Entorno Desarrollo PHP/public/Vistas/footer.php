@@ -3,7 +3,10 @@
 <html>
 <head>
 	<title>Mi sitio web</title>
-	<style>
+
+
+	<!--
+	<style> 
 	footer {
 		background-color: #690000;
 		color: #fff;
@@ -81,9 +84,12 @@
 	.footer-credits a {
 		color: #fff;
 	}
+-->
 
 	</style>
-    <link rel="stylesheet" href="Vistas/footer.css">
+
+
+    <link rel="stylesheet" href="Vistas/estilos.css">
 	<link rel="stylesheet" href="footer.css">
 </head>
 

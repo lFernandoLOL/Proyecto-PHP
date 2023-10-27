@@ -28,6 +28,7 @@ class ProductController {
 
     }
     
+    
     public function guardarProducto()
     {
         // Verificar si el formulario se ha enviado
@@ -36,12 +37,13 @@ class ProductController {
             $nombre_prod = $_POST["nombre_prod"];
             $descripcion = $_POST["descripcion"];
             $precio = $_POST["precio"];
+            $categoria = $_POST["categoria"];
       
             include_once("models/productos.php");
             $pDAO = new productoDAO();
     
             // método guardaProducto
-            $pDAO->guardaProducto($nombre_prod, $descripcion, $precio);
+            $pDAO->guardaProducto($nombre_prod, $descripcion, $precio, $categoria);
             
             // pagina de mostrar todos los productos
             /* $products=$pDAO->GetAllProducts();
@@ -157,7 +159,58 @@ public function buscarProductos()
 
     
 
+public function filtrarProductos() {
+    // Recupera la categoría y el término de búsqueda desde el formulario
+    include_once("models/productos.php");
+    $pDAO = new ProductoDAO();
+
+    $category = $_POST["category"];
+    $searchInput = $_POST["searchInput"];
+
+    if (empty($category)) {
+        // Si la categoría está vacía, aplicamos el filtro solo al nombre del producto
+        $filteredProducts = $pDAO->searchProducts($searchInput);
+    } else {
+        // Si se selecciona una categoría, aplicamos el filtro por categoría y término de búsqueda
+        $filteredProducts = $pDAO->getProductsByCategory($category);
+
+        if (!empty($searchInput)) {
+            // Comprueba si se ha ingresado un término de búsqueda
+            $searchTerm = strtolower($searchInput);
+            $filteredProductsResult = array();
+            foreach ($filteredProducts as $product) {
+                $productName = strtolower($product["Nombre_Prod"]);
+                if (strpos($productName, $searchTerm) !== false) {
+                    //strpos verifica si $searchTerm está contenido en el nombre del producto $productName. Si se encuentra el término de búsqueda en el nombre del producto, ese producto se agrega al array $filteredProducts.
+                    $filteredProductsResult[] = $product;
+                }
+            }
+            $filteredProducts = $filteredProductsResult;
+        }
+    }
+
+    View::show("showProducts", $filteredProducts);
 }
+
+
+
+public function prueba(){
+    try {
+        include_once("models/productos.php");
+        $pDAO = new ProductoDAO();
+        $data = $pDAO->prueba();
+        View::show("prueba",$data);
+    } catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+
+
+
+
+
+}
+
 
 
 
