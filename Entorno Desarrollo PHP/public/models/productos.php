@@ -95,6 +95,23 @@ class productoDAO{
     }
 
 
+    
+    public function editarProducto($id, $nombre, $descripcion, $precio, $categoria)
+{
+    $stmt = $this->bd_conn->prepare("UPDATE Productos SET Nombre_Prod = :nombre, Descripcion = :descripcion, Precio = :precio, ID_Cat = :categoria WHERE ID_Producto = :id");
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->bindParam(':descripcion', $descripcion);
+    $stmt->bindParam(':precio', $precio);
+    $stmt->bindParam(':categoria', $categoria);
+
+    try{
+    $stmt->execute();
+    } catch (PDOException $a) {
+        echo $a->getMessage();
+    }
+
+}
 
     public function prueba(){
         $stmt = $this->bd_conn->prepare("SELECT * FROM productos WHERE ID_Cat = 1");

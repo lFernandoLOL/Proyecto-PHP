@@ -44,13 +44,6 @@ class ProductController {
     
             // método guardaProducto
             $pDAO->guardaProducto($nombre_prod, $descripcion, $precio, $categoria);
-            
-            // pagina de mostrar todos los productos
-            /* $products=$pDAO->GetAllProducts();
-            $pDAO=null;
-            var_dump($products);
-            View::show("showProducts", $products);
-            */
             $pDAO=null;
             $this->GetAllProducts();
             
@@ -191,6 +184,43 @@ public function filtrarProductos() {
 
     View::show("showProducts", $filteredProducts);
 }
+
+
+public function editarVista()
+{
+    $id_producto = $_GET['id'];
+
+    include_once("models/productos.php");
+    $pDAO = new ProductoDAO();
+    $producto = $pDAO->getProductById($id_producto);
+
+    View::show("editarProducto", $producto);
+}
+
+
+public function editarproducto()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $id = $_POST["id"];
+        $nombre_prod = $_POST["nombre_prod"];
+        $descripcion = $_POST["descripcion"];
+        $precio = $_POST["precio"];
+        $categoria = $_POST["categoria"];
+
+        include_once("models/productos.php");
+        $pDAO = new ProductoDAO();
+        $result = $pDAO->editarProducto($id, $nombre_prod, $descripcion, $precio, $categoria);
+
+        if (empty($result)) {
+            header("Location: index.php?controller=ProductController&action=getAllProducts");
+        } else {
+            echo "Error al actualizar el producto. Por favor, inténtalo de nuevo.";
+        }
+    }  
+}
+
+
+
 
 
 

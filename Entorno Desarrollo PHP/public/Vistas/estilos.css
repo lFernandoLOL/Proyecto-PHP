@@ -1,4 +1,12 @@
-/*IMG*/
+/* EDITAR PROD */
+.form-container {
+    margin: 0 auto;
+    width: 50%;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
 
 /* FOOTER */
 footer {
@@ -152,4 +160,3 @@ nav li {
     align-items: center;
 }
 
-/* LOGIN */

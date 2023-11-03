@@ -90,7 +90,7 @@
 
 
     <link rel="stylesheet" href="Vistas/estilos.css">
-	<link rel="stylesheet" href="footer.css">
+	
 </head>
 
 <body>

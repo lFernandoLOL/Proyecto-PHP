@@ -68,6 +68,7 @@
                                 if(isset($_SESSION['username'])){
                                     if(($_SESSION['username']) == 'admin@admin.com'){
                                     echo '<a href="index.php?controller=ProductController&action=borrarproducto&id=' . $article['ID_Producto'] . '" class="btn btn-danger">Borrar</a>';
+                                    echo '<a href="index.php?controller=ProductController&action=editarVista&id=' . $article['ID_Producto'] . '" class="btn btn-warning">Editar</a>';
                                     }else{
                                 echo '<a href="index.php?controller=ProductController&action=aniadirCarrito&id=' . $article['ID_Producto'] . '" class="btn btn-success">Agregar</a>';
                                     }
