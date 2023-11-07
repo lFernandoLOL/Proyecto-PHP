@@ -2,15 +2,15 @@
 require_once 'db/db.php';
 
 class UsuarioDAO{
-    public $db_con;
+    public $bd_conn;
     public function __construct(){
-        $this->db_con=Database::connect();
+        $this->bd_conn=Database::connect();
     }
 
     // Metodo que pilla los valores que hay en la tabla Users de la base de datos
 
     public function getUsers($username, $password) {
-        $stmt = $this->db_con->prepare("SELECT * FROM Usuarios WHERE Correo = :username AND Contraseña = :password");
+        $stmt = $this->bd_conn->prepare("SELECT * FROM Usuarios WHERE Correo = :username AND Contraseña = :password");
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $password);
         $stmt->execute();
@@ -28,6 +28,31 @@ class UsuarioDAO{
             return false;
         }
     }
+
+    public function obtenerPerfil($idUsuario) {
+        $stmt = $this->bd_conn->prepare("SELECT * FROM Perfil WHERE ID_Usuario = :idUsuario");
+        $stmt->bindParam(':idUsuario', $idUsuario);
+        $stmt->execute();
+        $perfil = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $perfil;
+    }
+
+
+    public function registroUsuario($nombres, $apellidos, $correo, $contrasena) {
+
+        $stmt = $this->bd_conn->prepare("INSERT INTO usuarios (nombre, apellido, `correo`, `contraseña`) VALUES (:nombres, :apellidos, :correo, :contrasena)");
+        $stmt->bindParam(':nombres', $nombres);
+        $stmt->bindParam(':apellidos', $apellidos);
+        $stmt->bindParam(':correo', $correo);
+        $stmt->bindParam(':contrasena', $contrasena);
+    
+        if ($stmt->execute()) {
+            return true; // o puede retornar un mensaje de éxito, según lo que necesites
+        } else {
+            return false; // o puede retornar un mensaje de error, según lo que necesites
+        }
+    }
+    
     
 }
 

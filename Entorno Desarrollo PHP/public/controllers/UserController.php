@@ -46,6 +46,57 @@ public function iniciosesion()
         }
     }
 }
+
+public function registrarUsu()
+{
+    if (isset($_POST["submit"]) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+        $errores = false;
+        $mensaje_error = "";
+        
+        $nombres = $_POST['nombres'];
+        $apellidos = $_POST['apellidos'];
+        $correo = $_POST['correo'];
+        $contrasena = $_POST['contrasena'];
+      
+        // Validamos los campos del formulario
+        if (empty($nombres) || strlen($nombres) < 2) {
+            $errores = true;
+            $mensaje_error .= "El nombre debe tener al menos 2 caracteres.";
+        }
+      
+        if (empty($apellidos) || strlen($apellidos) < 2) {
+            $errores = true;
+            $mensaje_error .= "Los apellidos deben tener al menos 2 caracteres.";
+        }
+      
+        if (empty($correo)) {
+            $errores = true;
+            $mensaje_error .= "Por favor ingrese un correo válido.<br>";
+        }
+      
+        if (empty($contrasena) || strlen($contrasena) < 10) {
+            $errores = true;
+            $mensaje_error .= "La contraseña debe tener al menos 10 caracteres.";
+        }
+      
+        // Si no se encontraron errores, se envía el formulario
+        if ($errores == false) {
+            include_once("models/usuarios.php");
+            $uDAO = new UsuarioDAO();
+            $result = $uDAO->registroUsuario($nombres, $apellidos, $correo, $contrasena);
+
+            if ($result) {
+                Ver2::show2("index_L");
+            } else {
+                $mensaje_error = "Error al insertar el registro en la base de datos.<br>";
+                Ver2::show2("index_R", $mensaje_error);
+            }
+        } else {
+            Ver2::show2("index_R", $mensaje_error);
+        }
+    }
+}
+
     }
 
 
