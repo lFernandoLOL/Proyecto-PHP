@@ -19,9 +19,13 @@
         <label for="contrasena">Contraseña</label>
         <input type="password" name="password" placeholder="Introduzca la contraseña">
         <input type="submit" value="Iniciar Sesion">
-        <a href="#">¿No te acuerdas de la contraseña?</a><br>
+        <a href="index.php?controller=UserController&action=contra">¿No te acuerdas de la contraseña?</a><br>
         <a href="index.php?controller=UserController&action=registro">¿Aún sin cuenta? Regístrate</a>
         <?php 
+        if (isset($data)) {
+          echo "<br>";
+          echo "<span style='color:#00FF00'>".$data."</span>";
+        }
         if (!empty($_POST['error'])){
           echo "<br>";
           echo $_POST['error'];
