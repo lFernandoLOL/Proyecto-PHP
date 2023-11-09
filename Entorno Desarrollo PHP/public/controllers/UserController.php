@@ -20,6 +20,22 @@ public function contra(){
     Ver2::show2("recuperarcontra");
 }
 
+public function verPerfil()
+{
+    /*
+    include_once('models/usuarios.php');
+    $username = $_SESSION["username"];
+    $uDAO=new UsuarioDAO();
+    $apellido = $uDAO->getApellido($username);
+    $uDAO=null;
+    View::show("mostrarPerfil", array('apellido' => $apellido)) ;
+    */
+    View::show("mostrarPerfil");
+}
+
+
+
+
 public function iniciosesion()
 {
     #header("Location: index.php");
@@ -38,6 +54,14 @@ public function iniciosesion()
 
         if ($uDAO->getUsers($username, $password) == true) {
             $_SESSION['username'] = $username;
+            $perfil = $uDAO->getPerfil($username);
+            $_SESSION['perfil'] = $perfil;
+            
+            $apellido= $uDAO->getApellido($username);
+            $_SESSION['apellido'] = $apellido;
+
+            $nombre= $uDAO->getNombre($username);
+            $_SESSION['nombre'] = $nombre;
             #$_SESSION['ID_Usuario'] = $ID_Usuario;
             #header("Location: index.php");
             #View::show("showProducts");
@@ -77,7 +101,8 @@ public function registrarUsu()
             $mensaje_error .= "Por favor ingrese un correo válido.<br>";
         }
       
-        if (empty($contrasena) || strlen($contrasena) < 10) {
+
+        if (empty($contrasena) || strlen($contrasena) < 10 ) {
             $errores = true;
             $mensaje_error .= "La contraseña debe tener al menos 10 caracteres. <br>";
         }
@@ -92,12 +117,11 @@ public function registrarUsu()
             }
         }
 
-
         if ($cuentaNumero< 2) {
             $errores = true;
             $mensaje_error .= "La contraseña debe contener al menos 2 números.<br>";
         }
-
+        }
 
         // Si no se encontraron errores, se envía el formulario
         if ($errores == false) {
@@ -116,7 +140,8 @@ public function registrarUsu()
             Ver2::show2("index_R", $mensaje_error);
         }
     }
-}
+
+
 
 public function recuperarContrasena()
 {
@@ -144,11 +169,84 @@ public function recuperarContrasena()
     }
 }
 
+public function actualizarPerfil()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $nombres = $_POST['nombres'];
+        $apellidos = $_POST['apellidos'];
+        $contrasena = $_POST['contrasena'];
 
+        $mensaje_error = "";
+        
+        if (!empty($nombres)){
+            include_once("models/usuarios.php");
+            $uDAO = new UsuarioDAO();
+            $result = $uDAO->actualizarNombre($_SESSION['username'], $nombres);
 
+            if ($result) {
+                $exito = "Nombre actualizado correctamente";
+                Ver2::show2("mostrarPerfil", $exito);
+            } else {
+                $mensaje_error = "Error al actualizar el nombre.";
+                View::show("mostrarPerfil", $mensaje_error);
+            }
+        }
+
+        if (!empty($apellidos)){
+            include_once("models/usuarios.php");
+            $uDAO = new UsuarioDAO();
+            $result = $uDAO->actualizarApellido($_SESSION['username'], $apellidos);
+
+            if ($result) {
+                $exito = "Apellido actualizado correctamente";
+                View::show("mostrarPerfil", $exito);
+            } else {
+                $mensaje_error .= "<br>Error al actualizar el apellido.";
+                View::show("mostrarPerfil", $mensaje_error);
+            }
+        }
+
+        $cuentaNumero = 0;
+        for ($i = 0; $i < strlen($contrasena); $i++) {
+            if (is_numeric($contrasena[$i])) {
+                $cuentaNumero++;
+            }
+        }
+
+        if (!empty($_POST['contrasena']) && $_POST['contrasena'] === $_POST['contrasena_repetida']) {
+            if (empty($contrasena) || strlen($contrasena) < 10 || $cuentaNumero < 2) {
+                $mensaje_error .= "La contraseña debe tener al menos 10 caracteres y al menos 2 números. <br>";
+            } else {
+                include_once("models/usuarios.php");
+                $uDAO = new UsuarioDAO();
+                $result = $uDAO->actualizarContrasena($_SESSION['username'], $contrasena);
+
+                if ($result) {
+                    $exito = "Contraseña actualizada correctamente";
+                    View::show("mostrarPerfil", $exito);
+                } else {
+                    $mensaje_error .= "<br>Error al actualizar la contraseña.";
+                    View::show("mostrarPerfil", $mensaje_error);
+                }
+            }
+        } else {
+            $mensaje_error .= "Las contraseñas no coinciden.<br>";
+        }
+
+        if (!empty($mensaje_error)) {
+            View::show("mostrarPerfil", $mensaje_error);
+        }
     }
+}
+
+public function borrarUsuario(){
+    
+}
 
 
+    
+
+}
     
 
 

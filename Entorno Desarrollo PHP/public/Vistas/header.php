@@ -35,7 +35,7 @@
 			if (empty($_SESSION['username'])) {
 				echo "<a href='index.php?controller=ProductController&action=verCarrito'><i class='fas fa-shopping-cart'></i> Carrito</a>";
 			} else {
-				if ($_SESSION['username'] != 'admin@admin.com') {
+				if ($_SESSION['perfil'] != 1) {
 					echo "<a href='index.php?controller=ProductController&action=verCarrito'><i class='fas fa-shopping-cart'></i> Carrito</a>";
 				}
 			}
@@ -60,12 +60,16 @@
 				
 
 				echo "<div class='login'>";
-				if($_SESSION['username'] == 'admin@admin.com'){
+				if($_SESSION['perfil'] == 1){
 				echo "<a href='index.php?controller=ProductController&action=guardarProducto'>Añadir Producto</a>";
 				echo	"<a href='index.php?controller=OrderController&action=MostrarPedido'>Pedidos</a>";
 				}else{
 				echo	"<a href='index.php?controller=OrderController&action=MostrarPedidoID'>Mis Pedidos</a>";
 				}
+				echo "</div>";
+
+				echo "<div class='profile'>";
+				echo "<a href='index.php?controller=UserController&action=verPerfil'><img src='Vistas/img/Perfil.png' alt='Perfil de usuario' height='50px' width='50px'></a>";
 				echo "</div>";
 			}
 			?>

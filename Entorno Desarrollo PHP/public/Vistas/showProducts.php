@@ -66,7 +66,7 @@
                                 echo '<a href="index.php?controller=ProductController&action=ProductById&id=' . $article['ID_Producto'] . '" class="btn btn-primary">Detalles</a>';
                                 echo '</div>';
                                 if(isset($_SESSION['username'])){
-                                    if(($_SESSION['username']) == 'admin@admin.com'){
+                                    if(($_SESSION['perfil']) == 1){
                                     echo '<a href="index.php?controller=ProductController&action=borrarproducto&id=' . $article['ID_Producto'] . '" class="btn btn-danger">Borrar</a>';
                                     echo '<a href="index.php?controller=ProductController&action=editarVista&id=' . $article['ID_Producto'] . '" class="btn btn-warning">Editar</a>';
                                     }else{
