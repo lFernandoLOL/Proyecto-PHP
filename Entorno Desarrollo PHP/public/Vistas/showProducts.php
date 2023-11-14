@@ -58,7 +58,7 @@
                                 #echo $article['Precio'];
                             
                             echo "<h5 class='card-title'>".$article['Nombre_Prod']."</h5>";
-                            echo "<p class='card-text'>" .$article['Precio'] ."&#129689;</p>";
+                            echo "<p class='card-text'>" .$article['Precio'] ."	&#128184;</p>";
                             
                             
                         echo '<div class="d-flex justify-content-between align-items-center">';

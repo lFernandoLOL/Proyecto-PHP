@@ -39,6 +39,16 @@ class UsuarioDAO{
 
 
     public function registroUsuario($nombres, $apellidos, $correo, $contrasena) {
+        // Verificar si el correo ya está registrado
+        $stmt = $this->bd_conn->prepare("SELECT COUNT(*) FROM usuarios WHERE `correo` = :correo");
+        $stmt->bindParam(':correo', $correo);
+        $stmt->execute();
+        $result = $stmt->fetchColumn();
+    
+        if ($result > 0) {
+            return false;
+        }
+    
 
         $stmt = $this->bd_conn->prepare("INSERT INTO usuarios (nombre, apellido, `correo`, `contraseña`) VALUES (:nombres, :apellidos, :correo, :contrasena)");
         $stmt->bindParam(':nombres', $nombres);
@@ -46,13 +56,14 @@ class UsuarioDAO{
         $stmt->bindParam(':correo', $correo);
         $stmt->bindParam(':contrasena', $contrasena);
     
+
         if ($stmt->execute()) {
             return true;
         } else {
-            return false; 
+            return false;
         }
     }
-
+    
     public function recuperarContrasena($correo) {
         $stmt = $this->bd_conn->prepare("SELECT * FROM Usuarios WHERE correo = :correo");
         $stmt->bindParam(':correo', $correo);

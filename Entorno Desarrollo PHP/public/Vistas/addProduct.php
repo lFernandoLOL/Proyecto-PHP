@@ -77,7 +77,7 @@
             </select>
 
             <label for="imagen">Imagen (solo PNG):</label><br>
-            <input type="file" id="imagen" name="imagen" accept=".png" required><br><br>
+            <input type="file" id="imagen" name="imagen" accept=".png"><br><br>
 
             <button type="submit">Guardar</button>
         </form>

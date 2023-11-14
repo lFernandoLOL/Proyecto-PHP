@@ -46,7 +46,7 @@
                         <tr>
                             <td><?php echo $data['Nombre_Prod']; ?></td>
                             <td><?php echo $data['Descripcion']; ?></td>
-                            <td><?php echo $data['Precio']; ?></td>
+                            <td><?php echo $data['Precio']; echo " &#128184;"?></td>
                             <td><img src="Vistas/img/<?php echo $data['Nombre_Prod']; ?>.png" alt="Imagen del producto"></td>
                         </tr>
                     </tbody>

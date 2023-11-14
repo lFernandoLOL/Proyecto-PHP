@@ -133,13 +133,13 @@ public function registrarUsu()
                 $exito = "Usuario registrado correctamente";
                 Ver2::show2("index_L",$exito);
             } else {
-                $mensaje_error .= "Error al insertar el registro en la base de datos.<br>";
+                $mensaje_error .= "El correo ya se encuentra registrado.<br>";
                 Ver2::show2("index_R", $mensaje_error);
             }
         } else {
             Ver2::show2("index_R", $mensaje_error);
         }
-    }
+}
 
 
 

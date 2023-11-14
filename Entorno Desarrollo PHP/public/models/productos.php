@@ -39,7 +39,7 @@ class productoDAO{
 
 
     public function guardaProducto($nombre_prod, $descripcion, $precio, $categoria) {
-        $stmt = $this->bd_conn->prepare("INSERT INTO Productos (Nombre_Prod, Descripcion, Precio, Categoria) VALUES (:nombre_prod, :descripcion, :precio, :categoria)");
+        $stmt = $this->bd_conn->prepare("INSERT INTO Productos (Nombre_Prod, Descripcion, Precio, ID_Cat) VALUES (:nombre_prod, :descripcion, :precio, :categoria)");
     
         // Vincular los valores de los parámetros con los datos del formulario
         $stmt->bindParam(':nombre_prod', $nombre_prod);
