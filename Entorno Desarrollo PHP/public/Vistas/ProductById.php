@@ -10,6 +10,8 @@
                 border-collapse: collapse;
                 margin-bottom: 30px;
                 margin-top: 30px;
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .tabla th, .tabla td {
@@ -25,6 +27,38 @@
             .tabla img {
                 max-width: 100px;
                 max-height: 100px;
+            }
+
+            .back-button {
+                margin-top: 20px;
+                background-color: #808080; /* Cambiado a gris */
+                color: white;
+                padding: 10px 20px;
+                font-size: 16px;
+                text-decoration: none;
+                display: inline-block;
+                border-radius: 5px;
+                margin-bottom: 30px;
+            }
+
+            /* Añadido para hacer el hueco del nombre un poco más ancho */
+            .tabla td.nombre {
+                width: 150px;
+            }
+
+            /* Añadido para alinear el botón "Agregar" a la derecha */
+            .boton-agregar {
+                float: right;
+                background-color: #4CAF50; /* Verde */
+                color: white;
+                padding: 10px 20px;
+                font-size: 16px;
+                text-decoration: none;
+                display: inline-block;
+                border-radius: 5px;
+                margin-top: 20px;
+                margin-bottom: 30px;
+                margin-left: 10px; /* Espaciado entre los botones */
             }
         </style>
     </head>
@@ -53,7 +87,14 @@
                 </table>
                 <!--<br><br><br><br><br><br><br><br><br><br> -->
             </div>
+
+            <!-- Botón de flecha hacia atrás -->
+            <a class="back-button" href="index.php?controller=ProductController&action=getAllProducts">&#8592; Volver a todos los productos</a>
+
+            <!-- Botón "Agregar" -->
+            <a href="index.php?controller=ProductController&action=aniadirCarrito&id=<?php echo $data['ID_Producto']; ?>" class="boton-agregar">Agregar</a>
         </div>
+        
     </body>
 </html>
 
