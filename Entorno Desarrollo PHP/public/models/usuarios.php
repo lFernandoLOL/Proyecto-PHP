@@ -40,7 +40,7 @@ class UsuarioDAO{
 
     public function registroUsuario($nombres, $apellidos, $correo, $contrasena) {
         // Verificar si el correo ya está registrado
-        $stmt = $this->bd_conn->prepare("SELECT COUNT(*) FROM usuarios WHERE `correo` = :correo");
+        $stmt = $this->bd_conn->prepare("SELECT COUNT(*) FROM Usuarios WHERE `correo` = :correo");
         $stmt->bindParam(':correo', $correo);
         $stmt->execute();
         $result = $stmt->fetchColumn();
@@ -50,7 +50,7 @@ class UsuarioDAO{
         }
     
 
-        $stmt = $this->bd_conn->prepare("INSERT INTO usuarios (nombre, apellido, `correo`, `contraseña`) VALUES (:nombres, :apellidos, :correo, :contrasena)");
+        $stmt = $this->bd_conn->prepare("INSERT INTO Usuarios (nombre, apellido, `correo`, `contraseña`) VALUES (:nombres, :apellidos, :correo, :contrasena)");
         $stmt->bindParam(':nombres', $nombres);
         $stmt->bindParam(':apellidos', $apellidos);
         $stmt->bindParam(':correo', $correo);
@@ -124,7 +124,7 @@ public function actualizarApellido($username, $apellidos)
 
 public function actualizarContrasena($username, $contrasena)
 {
-    $stmt = $this->bd_conn->prepare("UPDATE Usuarios SET Contrasena = :contrasena WHERE Correo = :username");
+    $stmt = $this->bd_conn->prepare("UPDATE Usuarios SET Contraseña = :contrasena WHERE Correo = :username");
     $stmt->bindParam(':contrasena', $contrasena);
     $stmt->bindParam(':username', $username);
 

@@ -126,10 +126,10 @@
 		<div class="footer-social">
 			<h3>Síguenos en redes sociales</h3>
 			<ul>
-				<li><a href="https://www.facebook.com/MarioKartESP/"><i class="fab fa-facebook-f"></i>Facebook</a></li>
-				<li><a href="https://twitter.com/MKT_ESP"><i class="fab fa-twitter"></i>Twitter</a></li>
-				<li><a href="https://www.instagram.com/mario.kart/?hl=es"><i class="fab fa-instagram"></i>Instagram</a></li>
-				<li><a href="#"><i class="fab fa-youtube"></i>Youtube</a></li>
+				<li><a href="https://www.facebook.com/NintendoES/?locale=es_ES"><i class="fab fa-facebook-f"></i>Facebook</a></li>
+				<li><a href="https://twitter.com/NintendoES"><i class="fab fa-twitter"></i>Twitter</a></li>
+				<li><a href="https://www.instagram.com/nintendoes/"><i class="fab fa-instagram"></i>Instagram</a></li>
+				<li><a href="https://www.youtube.com/@NintendoES"><i class="fab fa-youtube"></i>Youtube</a></li>
 			</ul>
 		</div>
 	</div>

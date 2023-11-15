@@ -71,9 +71,9 @@
       <!-- Opciones adicionales de contacto -->
       <p><strong>Redes sociales:</strong></p>
       <ul>
-        <li><a href="https://www.facebook.com/MarioKartESP/" target="_blank">Facebook</a></li>
-        <li><a href="https://twitter.com/MKT_ESP" target="_blank">Twitter</a></li>
-        <li><a href="https://www.instagram.com/mario.kart/?hl=es" target="_blank">Instagram</a></li>
+        <li><a href="https://www.facebook.com/NintendoES/?locale=es_ES" target="_blank">Facebook</a></li>
+        <li><a href="https://twitter.com/NintendoES" target="_blank">Twitter</a></li>
+        <li><a href="https://www.instagram.com/nintendoes/" target="_blank">Instagram</a></li>
       </ul>
 
     </div>

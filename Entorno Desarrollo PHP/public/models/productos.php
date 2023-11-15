@@ -87,7 +87,7 @@ class productoDAO{
 
     public function getProductsByCategory($category) {
         // Conecta a la base de datos y ejecuta una consulta para obtener los productos por categoría
-        $stmt = $this->bd_conn->prepare("SELECT * FROM productos WHERE id_cat = :category");
+        $stmt = $this->bd_conn->prepare("SELECT * FROM Productos WHERE ID_cat = :category");
         $stmt->bindParam(':category', $category);
         $stmt->execute();
         
@@ -114,7 +114,7 @@ class productoDAO{
 }
 
     public function prueba(){
-        $stmt = $this->bd_conn->prepare("SELECT * FROM productos WHERE ID_Cat = 1");
+        $stmt = $this->bd_conn->prepare("SELECT * FROM Productos WHERE ID_Cat = 1");
         $stmt->execute();
         return $stmt->fetchAll();
     }
