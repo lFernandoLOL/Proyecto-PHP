@@ -24,13 +24,20 @@
         <?php 
         if (isset($data)) {
           echo "<br>";
-          echo "<span style='color:#00FF00'>".$data."</span>";
+          if (isset($_POST['error'])){
+          echo "<span style='color:#FF0000'>".$data."</span>";
+          }else{
+            echo "<span style='color:#00FF00'>".$data."</span>";
+          }
         }
+        /*
         if (!empty($_POST['error'])){
           echo "<br>";
           echo $_POST['error'];
         }
+        */
         ?>
+        
       </form>
     </div>
   </body>

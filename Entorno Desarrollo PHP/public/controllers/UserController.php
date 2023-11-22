@@ -177,18 +177,20 @@ public function actualizarPerfil()
         $contrasena = $_POST['contrasena'];
 
         $mensaje_error = "";
-        
+        $exito = "";
         if (!empty($nombres)){
             include_once("models/usuarios.php");
             $uDAO = new UsuarioDAO();
             $result = $uDAO->actualizarNombre($_SESSION['username'], $nombres);
 
             if ($result) {
-                $exito = "Nombre actualizado correctamente";
-                Ver2::show2("mostrarPerfil", $exito);
+                $exito .= "Nombre actualizado correctamente. Los cambios se verán reflejados en el próximo inicio de sesión <br>";
+                if(empty($apellidos)){
+                View::show("mostrarPerfil", $exito);
+                }
             } else {
-                $mensaje_error = "Error al actualizar el nombre.";
-                View::show("mostrarPerfil", $mensaje_error);
+                $mensaje_error .= "Error al actualizar el nombre.";
+                View::show("mostrarPerfil", $mensaje_error);  
             }
         }
 
@@ -198,7 +200,7 @@ public function actualizarPerfil()
             $result = $uDAO->actualizarApellido($_SESSION['username'], $apellidos);
 
             if ($result) {
-                $exito = "Apellido actualizado correctamente";
+                $exito .= "Apellido actualizado correctamente. Los cambios se verán reflejados en el próximo inicio de sesión <br>";
                 View::show("mostrarPerfil", $exito);
             } else {
                 $mensaje_error .= "<br>Error al actualizar el apellido.";
@@ -206,14 +208,17 @@ public function actualizarPerfil()
             }
         }
 
-        $cuentaNumero = 0;
-        for ($i = 0; $i < strlen($contrasena); $i++) {
-            if (is_numeric($contrasena[$i])) {
-                $cuentaNumero++;
-            }
-        }
 
-        if (!empty($_POST['contrasena']) && $_POST['contrasena'] === $_POST['contrasena_repetida']) {
+
+        if (!empty($_POST['contrasena']) || $_POST['contrasena'] == $_POST['contrasena_repetida']) {
+            
+            $cuentaNumero = 0;
+            for ($i = 0; $i < strlen($contrasena); $i++) {
+                if (is_numeric($contrasena[$i])) {
+                    $cuentaNumero++;
+                }
+            }
+
             if (empty($contrasena) || strlen($contrasena) < 10 || $cuentaNumero < 2) {
                 $mensaje_error .= "La contraseña debe tener al menos 10 caracteres y al menos 2 números. <br>";
             } else {
@@ -222,20 +227,19 @@ public function actualizarPerfil()
                 $result = $uDAO->actualizarContrasena($_SESSION['username'], $contrasena);
 
                 if ($result) {
-                    $exito = "Contraseña actualizada correctamente";
+                    $exito .= "Contraseña actualizada correctamente <br>";
                     View::show("mostrarPerfil", $exito);
                 } else {
-                    $mensaje_error .= "<br>Error al actualizar la contraseña.";
+                    $mensaje_error .= "Error al actualizar la contraseña. <br>";
                     View::show("mostrarPerfil", $mensaje_error);
+        
                 }
             }
         } else {
             $mensaje_error .= "Las contraseñas no coinciden.<br>";
-        }
-
-        if (!empty($mensaje_error)) {
             View::show("mostrarPerfil", $mensaje_error);
         }
+
     }
 }
 

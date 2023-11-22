@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Editar Perfil</title>
 </head>
+
 <body>
     <h2><br>Datos del Perfil:</h2>
     <p>Nombre:  <?php echo $_SESSION['nombre']; ?></p>

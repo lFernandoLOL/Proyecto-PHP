@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Edición de Producto</title>
     <style>
-        .form-container {
+    .form-container {
     margin: 0 auto;
     width: 50%;
     background-color: #f2f2f2;

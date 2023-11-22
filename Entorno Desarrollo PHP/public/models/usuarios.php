@@ -29,15 +29,6 @@ class UsuarioDAO{
         }
     }
 
-    public function obtenerPerfil($idUsuario) {
-        $stmt = $this->bd_conn->prepare("SELECT * FROM Perfil WHERE ID_Usuario = :idUsuario");
-        $stmt->bindParam(':idUsuario', $idUsuario);
-        $stmt->execute();
-        $perfil = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $perfil;
-    }
-
-
     public function registroUsuario($nombres, $apellidos, $correo, $contrasena) {
         // Verificar si el correo ya está registrado
         $stmt = $this->bd_conn->prepare("SELECT COUNT(*) FROM Usuarios WHERE `correo` = :correo");

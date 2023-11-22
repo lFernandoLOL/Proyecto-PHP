@@ -30,7 +30,7 @@
 
     } else {
         echo "<div class='alert alert-danger' style='width: 50%; margin:auto; margin-bottom: 20px;'><p style='text-align: center; margin-bottom:26px; margin-top:25px;'>El carrito está vacío</p></div>";
-        echo "<br><br><br><br><br><br><br><br><br><br>";
+        echo "<br><br><br><br>";
     }
     ?>
 </div>

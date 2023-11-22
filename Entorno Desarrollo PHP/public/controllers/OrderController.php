@@ -44,9 +44,7 @@ public function hacerPedido(){
     } else {
         
     }
-
     $oDAO = null;
-
 
     }
 
@@ -98,6 +96,38 @@ public function MostrarPedidoID() {
     View::show("vermispedidos", $misPedidos);
     
     exit();
+}
+
+
+public function guardarCambiosEstado() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $cambiosEstado = $_POST;
+        include_once("models/pedidos.php");
+        $oDAO = new pedidoDAO();
+        $result = $oDAO->guardarCambiosEstado($cambiosEstado);
+        if ($result) {
+            header("Location: index.php?controller=OrderController&action=mostrarPedido");
+        } else {
+            echo "Error al guardar cambios";
+        }
+    }
+}
+
+public function borrarPedido() {
+    if (isset($_POST['borrarPedido'])) {
+        $pedidoID = $_POST['borrarPedido'];
+        
+        require_once("models/pedidos.php");
+        $oDAO = new pedidoDAO();
+        
+        $result = $oDAO->borrarPedido($pedidoID);
+        
+        if ($result) {
+            header("Location: index.php?controller=OrderController&action=mostrarPedido");
+        } else {
+            echo "Error al borrar el pedido";
+        }
+    }
 }
 
 

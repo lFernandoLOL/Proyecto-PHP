@@ -12,18 +12,33 @@ class pedidoDAO{
 
 
 
-    public function GetPedidos(){
-     $stmt=$this->bd_conn->prepare("Select * from Pedidos");
-     $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    public function GetPedidos() {
+        $stmt = $this->bd_conn->prepare("SELECT * FROM Pedidos");
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-    try{
-     $stmt->execute();
-    } catch (PDOException $a) {
-      echo $a->getMessage();
+        try {
+            $stmt->execute();
+        } catch (PDOException $a) {
+            echo $a->getMessage();
+        }
+
+        $pedidos = $stmt->fetchAll();
+
+        foreach ($pedidos as &$pedido) {
+            $correo = $this->getCorreoPorUsuario($pedido['ID_Usuario']);
+            $pedido['Correo'] = $correo;
+        }
+
+        return $pedidos;
     }
 
-    return $stmt->fetchAll();
-  }
+    private function getCorreoPorUsuario($idUsuario) {
+        $stmt = $this->bd_conn->prepare("SELECT Correo FROM Usuarios WHERE ID_Usuario = :idUsuario");
+        $stmt->bindParam(':idUsuario', $idUsuario);
+        $stmt->execute();
+
+        return $stmt->fetchColumn();
+    }
 
 
     public function guardarProductoPedido($pedidoId, $productoId, $cantidad)
@@ -71,6 +86,30 @@ class pedidoDAO{
     return $result;
 }
 
+public function guardarCambiosEstado($cambiosEstado) {
+  $stmt = $this->bd_conn->prepare("UPDATE Pedidos SET Estado = :nuevoEstado WHERE ID_Pedido = :pedidoID");
+  
+  foreach ($cambiosEstado as $pedidoID => $nuevoEstado) {
+      $stmt->bindParam(':nuevoEstado', $nuevoEstado);
+      $stmt->bindParam(':pedidoID', $pedidoID);
+      $stmt->execute();
+  }
+
+  return true; 
+}
+
+public function borrarPedido($pedidoID) {
+  $stmt = $this->bd_conn->prepare("DELETE FROM Pedidos WHERE ID_Pedido = :pedidoID");
+  $stmt->bindParam(':pedidoID', $pedidoID);
+  $stmt->execute();
+
+  return true;  
+}
+
+
+}
+
+
 
 
   
@@ -80,5 +119,5 @@ class pedidoDAO{
   }
 */
 
-}
+
 ?>

@@ -29,7 +29,7 @@ if (isset($_REQUEST['action']) && isset($_REQUEST['controller'])) {
     ';
 
     #llamada a la pagina de pruebas:
-    echo "<a href='index.php?controller=ProductController&action=prueba'>Prueba</a>";
+    #echo "<a href='index.php?controller=ProductController&action=prueba'>Prueba</a>";
     require_once("Vistas/footer.php");
 }
 
