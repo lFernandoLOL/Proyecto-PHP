@@ -30,7 +30,7 @@
             <input type="text" name="searchInput" placeholder="Buscar producto" class="form-control me-2">
             <button type="submit" class="btn btn-primary">Buscar</button>
         </form>
-    -->
+        -->
 
         <form action="index.php?controller=ProductController&action=filtrarProductos" method="POST" class="d-flex mt-3">
             <input type="text" name="searchInput" placeholder="Buscar producto" class="form-control me-2">
@@ -47,19 +47,22 @@
 
         <br>
             </div>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 d-flex justify-content-center">
                 <?php
                 foreach ($data as $article){
                 echo "<div class='col'>";
                     echo '<div class="card shadow-sm">';
-                    echo '<img src="Vistas/img/' . $article['Nombre_Prod'] . '.png" width="400px" height="300px">';
+
+
+                    echo '<img src="Vistas/img/' . $article['Nombre_Prod'] . '.png" class="card-img-top" style="max-width: 300px; max-height: 300px;">';
+
                         echo '<div class="card-body">';
                                 #echo $article['Nombre_Prod'];
                                 #echo $article['Precio'];
                             
                             echo "<h5 class='card-title'>".$article['Nombre_Prod']."</h5>";
                             echo "<p class='card-text'>" .$article['Precio'] ."	&#128184;</p>";
-                            
+
                             
                         echo '<div class="d-flex justify-content-between align-items-center">';
                                 echo '<div class="btn-group">';

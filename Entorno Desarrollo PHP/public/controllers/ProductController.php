@@ -80,19 +80,25 @@ class ProductController {
 
 
     
-    public function aniadirCarrito(){
-        if (!isset ($_SESSION['carrito'])) {
-            $_SESSION['carrito']=array();
+    public function aniadirCarrito() {
+        if (!isset($_SESSION['carrito'])) {
+            $_SESSION['carrito'] = array();
         }
-        if (isset($_GET['id'])){
-            array_push($_SESSION['carrito'],$_GET['id']);  
-            include_once 'models/productos.php';    
-            $pDAO=new ProductoDAO();
-            $products=$pDAO->getAllProducts();
-            $pDAO=null;
-            View::show("showProducts", $products);
+    
+        if (isset($_GET['id'])) {
+            if (isset($_POST['cantidad'])){
+            $cantidad = $_POST['cantidad'];
+    
+            for ($i = 0; $i < $cantidad; $i++) {
+                array_push($_SESSION['carrito'], $_GET['id']);
+            }
+        }else{
+            array_push($_SESSION['carrito'], $_GET['id']);
+        }
+            $this->GetAllProducts();
         }
     }
+    
 
     public function verCarrito(){
     

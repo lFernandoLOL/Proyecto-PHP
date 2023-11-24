@@ -41,16 +41,26 @@
             margin-top: 20px;
         }
 
-        .boton-agregar {
-            float: right;
+        .boton-agregar{
             margin-top: 20px;
             margin-left: 10px; 
+            border: none;
             background-color: #4CAF50;
         }
-
+        .form{
+            float: right;
+        }
         .tabla td.nombre {
             width: 150px;
         }
+        
+        .cantidad-input{
+            margin-top: 28px;
+            margin-left: 10px; 
+            float: right;
+            width:45px;
+        }
+
     </style>
 </head>
 <body>
@@ -81,8 +91,11 @@
         <!-- Botón de flecha hacia atrás -->
         <a class="back-button" href="index.php?controller=ProductController&action=getAllProducts">&#8592; Volver a todos los productos</a>
 
-        <!-- Botón "Agregar" -->
-        <a href="index.php?controller=ProductController&action=aniadirCarrito&id=<?= $data['ID_Producto'] ?>" class="boton-agregar">Agregar</a>
+        <!-- Formulario para agregar al carrito -->
+        <form class="form" action="index.php?controller=ProductController&action=aniadirCarrito&id=<?= $data['ID_Producto'] ?>" method="post">
+            <input type="number" name="cantidad" id="cantidad" value="1" min="1" max="10" class="cantidad-input">
+            <input type="submit" value="Agregar al carrito" class="boton-agregar">
+        </form>
     </div>
 </body>
 </html>
