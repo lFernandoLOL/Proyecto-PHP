@@ -92,10 +92,13 @@
         <a class="back-button" href="index.php?controller=ProductController&action=getAllProducts">&#8592; Volver a todos los productos</a>
 
         <!-- Formulario para agregar al carrito -->
-        <form class="form" action="index.php?controller=ProductController&action=aniadirCarrito&id=<?= $data['ID_Producto'] ?>" method="post">
-            <input type="number" name="cantidad" id="cantidad" value="1" min="1" max="10" class="cantidad-input">
-            <input type="submit" value="Agregar al carrito" class="boton-agregar">
-        </form>
+        <?php if(($_SESSION['perfil']) != 1){
+        echo "<form class=\"form\" action=\"index.php?controller=ProductController&action=aniadirCarrito&id={$data['ID_Producto']}\" method=\"post\">";
+        echo '<input type="number" name="cantidad" id="cantidad" value="1" min="1" max="10" class="cantidad-input">';
+            echo "<input type='submit' value='Agregar al carrito' class='boton-agregar'>";
+         echo "</form>";
+        }
+        ?>
     </div>
 </body>
 </html>
