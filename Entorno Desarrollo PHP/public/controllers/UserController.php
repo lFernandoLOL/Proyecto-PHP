@@ -244,7 +244,21 @@ public function actualizarPerfil()
 }
 
 public function borrarUsuario(){
-    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $correo = $_SESSION['username'];
+        include_once("models/usuarios.php");
+        $uDAO = new UsuarioDAO();
+        $result = $uDAO->borrarUsu($correo);
+
+        if ($result) {
+            $exito = "Usuario borrado correctamente";
+            Ver2::show2("index_L",$exito);
+        } else {
+            $mensaje_error = "<br> Error al borrar usuario. <br>";
+            View::show("mostrarPerfil", $mensaje_error);
+
+    }
+}
 }
 
 

@@ -150,6 +150,19 @@ public function getNombre($username){
 }
     
 }
+
+
+public function borrarUsu($correo) {
+    $stmt = $this->bd_conn->prepare("DELETE FROM Usuarios WHERE Correo = :correo");
+    $stmt->bindParam(':correo', $correo);
+    $exito = $stmt->execute();
+
+    if ($exito) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
+}
 ?>
