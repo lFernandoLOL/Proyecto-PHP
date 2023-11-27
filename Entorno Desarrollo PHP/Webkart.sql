@@ -38,17 +38,19 @@ CREATE TABLE IF NOT EXISTS `Pedidos` (
   `ID_Pedido` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` date NOT NULL,
   `ID_Usuario` int(11) DEFAULT NULL,
+  `Estado` varchar(50) DEFAULT 'Pedido Creado',
   PRIMARY KEY (`ID_Pedido`),
   KEY `id_usuario` (`ID_Usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla database.Pedidos: ~4 rows (aproximadamente)
-REPLACE INTO `Pedidos` (`ID_Pedido`, `fecha`, `ID_Usuario`) VALUES
-	(1, '2023-05-15', 1),
-	(15, '2023-06-06', 2),
-	(16, '2023-06-06', 2),
-	(17, '2023-06-09', 2),
-	(18, '2023-11-15', 4);
+-- Volcando datos para la tabla database.Pedidos: ~6 rows (aproximadamente)
+REPLACE INTO `Pedidos` (`ID_Pedido`, `fecha`, `ID_Usuario`, `Estado`) VALUES
+	(15, '2023-06-06', 2, 'En proceso'),
+	(16, '2023-06-06', 2, 'Entregado'),
+	(17, '2023-06-09', 2, 'Entregado'),
+	(18, '2023-11-15', 4, 'Enviado'),
+	(19, '2023-11-20', 4, 'Enviado'),
+	(23, '2023-11-20', 21, 'Cancelado');
 
 -- Volcando estructura para tabla database.Perfil
 CREATE TABLE IF NOT EXISTS `Perfil` (
@@ -71,12 +73,12 @@ CREATE TABLE IF NOT EXISTS `Productos` (
   `ID_Cat` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_Producto`),
   KEY `ID_Cat` (`ID_Cat`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla database.Productos: ~30 rows (aproximadamente)
+-- Volcando datos para la tabla database.Productos: ~31 rows (aproximadamente)
 REPLACE INTO `Productos` (`ID_Producto`, `Nombre_Prod`, `Descripcion`, `Precio`, `ID_Cat`) VALUES
 	(1, 'Caparazón Verde', 'Linea recta al pulsar L1 porueba', 100, 2),
-	(2, 'Caparazón Rojo', 'Sigue a el enemigo de enfrente. Prueba4', 200, 2),
+	(2, 'Caparazón Rojo', 'Sigue a el enemigo de enfrente.', 200, 1),
 	(3, 'Caparazón Azul', 'Se dirije directo al primer puesto y estalla', 500, 2),
 	(4, 'Plátano', 'Cuando se impacta contra él, el conductor se desliza aturdido', 50, 2),
 	(5, 'Bill La Bala', 'Si vas muy atrasado, te ayuda a alcanzar al pelotón', 1000, 2),
@@ -100,7 +102,7 @@ REPLACE INTO `Productos` (`ID_Producto`, `Nombre_Prod`, `Descripcion`, `Precio`,
 	(41, 'GameBoy AdvanceSP', 'La Game Boy Advance SP, frecuentemente abreviada como GBA SP, es una consola de videojuegos portátil fabricada por Nintendo y lanzada al mercado en marzo de 2003. Básicamente es un rediseño de la Game Boy Advance, con varias funciones añadidas como batería o pantalla iluminada. Es totalmente compatible con todas sus antecesoras.', 2500, 1),
 	(42, 'GameBoy Color', 'La Game Boy es una videoconsola portátil de 8 bits de cuarta generación desarrollada y fabricada por Nintendo. Salió a la venta por primera vez en Japón el 21 de abril de 1989, en Norteamérica más tarde ese mismo año y en Europa a finales de 1990.', 2500, 1),
 	(43, 'Nintendo Switch Oled', 'Te presentamos la última consola que se une a la familia Nintendo Switch\r\nLa nueva consola cuenta con una vibrante pantalla OLED de 7 pulgadas (17.78 cm), un soporte ajustable y amplio, una base con puerto LAN para conexión por cable, almacenamiento interno de 64 GB y audio mejorado.', 3500, 1),
-	(45, 'Guía Coleccionista Tears Of The Kingdom', 'Compra la guía oficial coleccionista de The Legend of Zelda: Tears of the Kingdom que ofrece un vasto mundo repleto de misiones variadas, rompecabezas desafiantes, monstruos feroces y paisajes únicos.\r\nEsta guía explora todas las características y facetas de The Legend of Zelda: Tears of the Kingdom con una sola misión: ayudar a descubrir y disfrutar cada momento del juego.', 1000, 4),
+	(45, 'Guía Coleccionista TOTK', 'Compra la guía oficial coleccionista de The Legend of Zelda: Tears of the Kingdom que ofrece un vasto mundo repleto de misiones variadas, rompecabezas desafiantes, monstruos feroces y paisajes únicos.\r\nEsta guía explora todas las características y facetas de The Legend of Zelda: Tears of the Kingdom con una sola misión: ayudar a descubrir y disfrutar cada momento del juego.', 1000, 1),
 	(46, 'Pack Figuras Pokémon', 'Increible set de regalo con 6 figuras iconicas de la region de Kanto. En este multipack podrás encontrar a los personajes con increibles acabados y listos para el combate. Recrea todas las aventuras.En este set incluye  Personajes:Pikachu, Squirtle, Charmander, Bulbasaur, Mimikyu y Toxel Revise siempre bien el etiquetado y compruebe que los juguetes cumplen las normas de seguridad CE.', 500, 4),
 	(47, 'Pokémon Rojo Fuego', 'Pokémon Rojo Fuego y Pokémon Verde Hoja son las ediciones reeditadas de los videojuegos originales Pokémon Rojo y Pokémon Verde (Rojo y Azul fuera de Japón), con las novedades de los videojuegos para Game Boy Advance de Pokémon Rubí y Pokémon Zafiro. También llamados "Pokémon Edición Rojo Fuego" y "Pokémon Edición Verde Hoja", ambas ediciones fueron lanzadas a las tiendas europeas el 1 de octubre de 2004.', 6000, 4),
 	(48, 'Mini Nes', 'Nintendo Classic Mini: Nintendo Entertainment System es una versión en miniatura de la rompedora NES lanzada en Europa originalmente en 1986.\r\n\r\nEnchufa la consola Nintendo Classic Mini: Nintendo Entertainment System a la televisión, coge el mando gris y redescubre la diversión de los juegos de NES, ¡con alta definición de 60 Hz!', 2000, 1),
@@ -114,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `Prod_Pedidos` (
   KEY `ID_Pedido` (`ID_Pedido`,`ID_Producto`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Volcando datos para la tabla database.Prod_Pedidos: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla database.Prod_Pedidos: ~11 rows (aproximadamente)
 REPLACE INTO `Prod_Pedidos` (`Cantidad`, `ID_Pedido`, `ID_Producto`) VALUES
 	(1, 15, 2),
 	(1, 16, 2),
@@ -122,7 +124,11 @@ REPLACE INTO `Prod_Pedidos` (`Cantidad`, `ID_Pedido`, `ID_Producto`) VALUES
 	(1, 17, 1),
 	(1, 18, 28),
 	(1, 18, 32),
-	(1, 18, 42);
+	(1, 18, 42),
+	(1, 19, 45),
+	(1, 23, 37),
+	(1, 23, 2),
+	(1, 23, 45);
 
 -- Volcando estructura para tabla database.Usuarios
 CREATE TABLE IF NOT EXISTS `Usuarios` (
@@ -134,16 +140,18 @@ CREATE TABLE IF NOT EXISTS `Usuarios` (
   `ID_Perfil` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_Usuario`),
   KEY `ID_Perfil` (`ID_Perfil`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci COMMENT='Tabla de los users\r\n';
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci COMMENT='Tabla de los users\r\n';
 
--- Volcando datos para la tabla database.Usuarios: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla database.Usuarios: ~8 rows (aproximadamente)
 REPLACE INTO `Usuarios` (`ID_Usuario`, `Nombre`, `Apellido`, `Correo`, `Contraseña`, `ID_Perfil`) VALUES
 	(1, 'Admin', 'Admin', 'admin@admin.com', 'admin', 1),
 	(2, 'Prueba', 'Prueba1', 'Prueba@gmail.com', '12345', 2),
 	(3, 'Pedro', 'Mitidiri', 'pedro@gmail.com', 'pedro1234', 2),
 	(4, 'ana', 'pelae', 'anapelae@gmail.com', 'ejemplisimo10', 2),
 	(6, 'Fernando', 'Agudo', 'fernandoagudo99@gmail.com', 'ejemplo10', 1),
-	(20, 'Uwu', 'uweu', 'uwu@gmail.com', 'ejemplisimo10', NULL);
+	(20, 'Uwu', 'uweu', 'uwu@gmail.com', 'ejemplisimo10', NULL),
+	(21, 'Raulete', 'Gonzales', 'raulete@gmail.com', 'ejemplisimo10', NULL),
+	(22, 'Perfil', 'Borrar', 'borrar@gmail.com', 'ejemplisimo10', NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
