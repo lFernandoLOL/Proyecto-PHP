@@ -15,8 +15,9 @@ Este proyecto es una aplicación web desarrollada para la asignatura de Infraest
 
 - Lenguajes de programación: PHP, HTML, CSS.
 - Bootstrap para el diseño y la interfaz de usuario.
-- Base de datos: MySQL para almacenar información de usuarios, productos ,pedidos y tabla N:M de Prod_Pedidos.
+- Base de datos: MySQL para almacenar información de usuarios, productos ,pedidos,Prod_Pedidos, Perfil
 - PDO (PHP Data Objects): Para interactuar con la base de datos.
+- Uso de docker y contenedores para desplegar los entornos
 
 
 ## Autor
