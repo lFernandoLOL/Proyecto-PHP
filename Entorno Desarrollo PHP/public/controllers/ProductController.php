@@ -227,9 +227,6 @@ public function editarproducto()
 
 
 
-
-
-
 public function prueba(){
     try {
         include_once("models/productos.php");

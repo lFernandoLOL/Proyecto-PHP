@@ -14,39 +14,41 @@ public function mostrarPedido(){
 
 
 
-public function hacerPedido(){
+public function hacerPedido() {
     require_once ("models/pedidos.php");
+    $oDAO = new pedidoDAO();
 
-    $oDAO=new pedidoDAO();
     if (!isset($_SESSION['ID_Usuario'])) {
-        // Redirigir al index_L.php si no ha iniciado sesión
+        // Redirige al index_L.php si no ha iniciado sesión
         Ver2::show2("index_L", null);
         return;
     }
 
     if (!empty($_SESSION['carrito'])) {
         $idUsuario = $_SESSION['ID_Usuario'];
-
         $fecha = date('Y-m-d');
-        // Crear el pedido en la base de datos
+        
+        // Crea el pedido en la base de datos
         $pedidoId = $oDAO->crearPedido($fecha, $idUsuario);
 
-        foreach ($_SESSION['carrito'] as $productoId) {
-            $cantidad = 1;
+        // Obtiene la cantidad de cada producto en el carrito
+        $productosAgrupados = array_count_values($_SESSION['carrito']);
+
+        // Guarda cada producto en la tabla Prod_Pedidos
+        foreach ($productosAgrupados as $productoId => $cantidad) {
             $oDAO->guardarProductoPedido($pedidoId, $productoId, $cantidad);
         }
-
+        // Limpiar el carrito después de realizar el pedido
         $_SESSION['carrito'] = array();
 
-        //página de ver pedidos
-        #$this->MostrarPedidoID();
-        View::show("confirmacion",null);
+       
+        View::show("confirmacion", null);
     } else {
-        
     }
-    $oDAO = null;
 
-    }
+    $oDAO = null;
+}
+
 
     public function GetproductsByPedido() {
         // Verificar si el usuario ha iniciado sesión

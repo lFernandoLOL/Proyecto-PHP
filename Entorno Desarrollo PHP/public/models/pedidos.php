@@ -77,7 +77,20 @@ class pedidoDAO{
   }
   
   public function getProductosByPedidoID($pedidoID) {
-    $stmt = $this->bd_conn->prepare("SELECT Prod_Pedidos.Cantidad, Productos.Nombre_Prod, Productos.Precio FROM Prod_Pedidos INNER JOIN Productos ON Prod_Pedidos.ID_Producto = Productos.ID_Producto WHERE Prod_Pedidos.ID_Pedido = :pedidoID");
+    $stmt = $this->bd_conn->prepare("
+        SELECT
+            Prod_Pedidos.ID_Pedido,
+            Prod_Pedidos.Cantidad,
+            Productos.Nombre_Prod,
+            Productos.Precio,
+            Usuarios.Correo
+        FROM
+            Prod_Pedidos
+        INNER JOIN Productos ON Prod_Pedidos.ID_Producto = Productos.ID_Producto
+        INNER JOIN Pedidos ON Prod_Pedidos.ID_Pedido = Pedidos.ID_Pedido
+        INNER JOIN Usuarios ON Pedidos.ID_Usuario = Usuarios.ID_Usuario
+        WHERE Prod_Pedidos.ID_Pedido = :pedidoID
+    ");
     $stmt->bindParam(':pedidoID', $pedidoID);
     $stmt->execute();
 
@@ -85,6 +98,7 @@ class pedidoDAO{
 
     return $result;
 }
+
 
 public function guardarCambiosEstado($cambiosEstado) {
   $stmt = $this->bd_conn->prepare("UPDATE Pedidos SET Estado = :nuevoEstado WHERE ID_Pedido = :pedidoID");

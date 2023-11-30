@@ -221,6 +221,7 @@ public function actualizarPerfil()
 
             if (empty($contrasena) || strlen($contrasena) < 10 || $cuentaNumero < 2) {
                 $mensaje_error .= "La contraseña debe tener al menos 10 caracteres y al menos 2 números. <br>";
+                View::show("mostrarPerfil", $mensaje_error);
             } else {
                 include_once("models/usuarios.php");
                 $uDAO = new UsuarioDAO();
