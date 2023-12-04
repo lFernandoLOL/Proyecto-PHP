@@ -35,6 +35,7 @@
 
     .contact-image-left {
       left: 60px;
+      
     }
 
     .contact-image-right {

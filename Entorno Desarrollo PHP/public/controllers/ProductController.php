@@ -38,7 +38,11 @@ class ProductController {
             $descripcion = $_POST["descripcion"];
             $precio = $_POST["precio"];
             $categoria = $_POST["categoria"];
-      
+            $nombre_archivo = $nombre_prod . ".png";
+            $directorio_destino = __DIR__ . "/../../public/Vistas/img/" . $nombre_archivo;
+
+
+            move_uploaded_file($_FILES["imagen"]["tmp_name"], $directorio_destino);
             include_once("models/productos.php");
             $pDAO = new productoDAO();
     

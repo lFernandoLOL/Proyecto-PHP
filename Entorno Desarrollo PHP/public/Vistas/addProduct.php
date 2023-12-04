@@ -58,7 +58,8 @@
 <body>
     <div class="form-container">
         <h2>Formulario de Producto</h2>
-        <form class="form" action="index.php?controller=ProductController&action=guardarProducto" method="post">
+        <form enctype="multipart/form-data" action="index.php?controller=ProductController&action=guardarProducto" method="post">
+
             <label for="nombre_prod">Nombre del Producto:</label>
             <input type="text" id="nombre_prod" name="nombre_prod" required>
 
