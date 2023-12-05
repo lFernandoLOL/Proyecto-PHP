@@ -41,6 +41,10 @@ class ProductController {
             $nombre_archivo = $nombre_prod . ".png";
             $directorio_destino = __DIR__ . "/../../public/Vistas/img/" . $nombre_archivo;
 
+        
+            if (file_exists($directorio_destino)) {
+                unlink($directorio_destino);
+            }
 
             move_uploaded_file($_FILES["imagen"]["tmp_name"], $directorio_destino);
             include_once("models/productos.php");
@@ -217,12 +221,27 @@ public function editarproducto()
         $precio = $_POST["precio"];
         $categoria = $_POST["categoria"];
 
+        
+        if (!empty($_FILES["imagen"]["tmp_name"])) {
+        $nombre_archivo = $nombre_prod . ".png";
+        $directorio_destino = __DIR__ . "/../../public/Vistas/img/" . $nombre_archivo;
+        
+        if (file_exists($directorio_destino)) {
+            unlink($directorio_destino);
+        }
+        move_uploaded_file($_FILES["imagen"]["tmp_name"], $directorio_destino);
+        }
+
+
+
+
         include_once("models/productos.php");
         $pDAO = new ProductoDAO();
         $result = $pDAO->editarProducto($id, $nombre_prod, $descripcion, $precio, $categoria);
 
         if (empty($result)) {
             header("Location: index.php?controller=ProductController&action=getAllProducts");
+            exit();
         } else {
             echo "Error al actualizar el producto. Por favor, inténtalo de nuevo.";
         }

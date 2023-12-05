@@ -21,7 +21,7 @@
 <body>
     <div class="form-container">
         <h2>Edición de Producto</h2>
-        <form class="form" action="index.php?controller=ProductController&action=editarProducto" method="post">
+        <form enctype="multipart/form-data" class="form" action="index.php?controller=ProductController&action=editarProducto" method="post">
             <input type="hidden" name="id" value="<?php echo $data['ID_Producto']; ?>">
             <br>
             <label for="nombre_prod">Nombre del Producto:</label>
@@ -44,7 +44,10 @@
                     <option value="3" >Peluche</option>
                     <option value="4" >Otro</option>
                 </select>
-            <br><br>
+                <label for="imagen">Imagen (solo PNG):</label><br>
+            <br>
+            <input type="file" id="imagen" name="imagen" accept=".png"><br><br>
+            <br>
             <button type="submit">Guardar cambios</button>
             <br>
         </form>
