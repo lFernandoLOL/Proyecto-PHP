@@ -164,7 +164,7 @@ public function buscarProductos()
     }
 }
 
-    
+
 
 public function filtrarProductos() {
     // Recupera la categoría y el término de búsqueda desde el formulario
@@ -223,12 +223,13 @@ public function editarproducto()
 
         
         if (!empty($_FILES["imagen"]["tmp_name"])) {
-        $nombre_archivo = $nombre_prod . ".png";
         $directorio_destino = __DIR__ . "/../../public/Vistas/img/" . $nombre_archivo;
         
         if (file_exists($directorio_destino)) {
             unlink($directorio_destino);
         }
+        $nombre_archivo = $nombre_prod . ".png";
+
         move_uploaded_file($_FILES["imagen"]["tmp_name"], $directorio_destino);
         }
 

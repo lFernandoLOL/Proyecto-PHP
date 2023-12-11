@@ -18,7 +18,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="lista.css" rel="stylesheet">
 </head>
-
+<body>
 
     <!--Contenido-->
   
@@ -44,6 +44,7 @@
             <button type="submit" class="btn btn-primary">Filtrar</button>
         </form>
 
+    
 
         <br>
             </div>
@@ -70,7 +71,7 @@
                                 echo '</div>';
                                 if(isset($_SESSION['username'])){
                                     if(($_SESSION['perfil']) == 1){
-                                    echo '<a href="index.php?controller=ProductController&action=borrarproducto&id=' . $article['ID_Producto'] . '" class="btn btn-danger">Borrar</a>';
+                                    echo '<a href="index.php?controller=ProductController&action=borrarproducto&id=' . $article['ID_Producto'] . '" class="btn btn-danger" onclick="return confirm(\'¿Está seguro de que desea eliminar ' . $article['Nombre_Prod'] . '?\')">Borrar</a>';
                                     echo '<a href="index.php?controller=ProductController&action=editarVista&id=' . $article['ID_Producto'] . '" class="btn btn-warning">Editar</a>';
                                     }else{
                                 echo '<a href="index.php?controller=ProductController&action=aniadirCarrito&id=' . $article['ID_Producto'] . '" class="btn btn-success">Agregar</a>';

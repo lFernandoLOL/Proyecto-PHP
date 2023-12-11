@@ -12,6 +12,22 @@
     border-radius: 5px;
     margin-top: 30px;
     }
+
+    .form-container button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+        }
+
+    #descripcion{
+        width:300px;
+    }
+    
+    .form-container h2 {
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -44,7 +60,8 @@
                     <option value="3" >Peluche</option>
                     <option value="4" >Otro</option>
                 </select>
-                <label for="imagen">Imagen (solo PNG):</label><br>
+                <br><br>
+                <label for="imagen">Imagen (solo PNG):</label>
             <br>
             <input type="file" id="imagen" name="imagen" accept=".png"><br><br>
             <br>
