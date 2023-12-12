@@ -220,7 +220,7 @@ public function editarproducto()
         $descripcion = $_POST["descripcion"];
         $precio = $_POST["precio"];
         $categoria = $_POST["categoria"];
-
+        $nombre_archivo = $nombre_prod . ".png";
         
         if (!empty($_FILES["imagen"]["tmp_name"])) {
         $directorio_destino = __DIR__ . "/../../public/Vistas/img/" . $nombre_archivo;
@@ -228,7 +228,7 @@ public function editarproducto()
         if (file_exists($directorio_destino)) {
             unlink($directorio_destino);
         }
-        $nombre_archivo = $nombre_prod . ".png";
+
 
         move_uploaded_file($_FILES["imagen"]["tmp_name"], $directorio_destino);
         }
